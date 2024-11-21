@@ -1,4 +1,4 @@
-package org.example;
+package org.day1;
 
 public class Line {
     String input;

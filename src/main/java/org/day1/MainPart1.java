@@ -1,6 +1,6 @@
-package org.example;
+package org.day1;
 
-public class Main {
+public class MainPart1 {
     public static void main(String[] args) {
         GetInput get;
         try {
