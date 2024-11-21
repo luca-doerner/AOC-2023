@@ -12,7 +12,7 @@ public class MainPart1 {
         int totalCalibrationValue = 0;
 
         for(int i = 0; i < get.getLines().size(); i++){
-            totalCalibrationValue += get.getLineByIndex(i).getCalibrationValue();
+            totalCalibrationValue += get.getLineByIndex(i).getCalibrationValuePart1();
         }
 
         System.out.println(totalCalibrationValue);
