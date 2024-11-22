@@ -11,7 +11,7 @@ public class Line_3 extends Line{
     public ArrayList<Integer> numLengths;
     public ArrayList<Integer> numIndexes;
     public boolean[] numsValid;
-    public ArrayList<ArrayList<Integer>> gearIndexes;
+    public ArrayList<ArrayList<Integer>> gears;
     public ArrayList<Integer> gearRatio;
     int index;
 
@@ -26,6 +26,8 @@ public class Line_3 extends Line{
         }
         checkNumberNeighbors();
 
+        getGears();
+        checkGearNeighbors();
     }
 
     public char[] getChars(){
@@ -43,13 +45,63 @@ public class Line_3 extends Line{
             }
         }
 
-        this.gearIndexes = gearIndexes;
+        this.gears = gearIndexes;
     }
 
     public void checkGearNeighbors(){
         for(int i = 0; i < numIndexes.size(); i++){
+            int startIndex = numIndexes.get(i);
+            int endIndex = numIndexes.get(i) + numLengths.get(i) - 1;
 
+            for(ArrayList<Integer> gear: gears){
+                int gearIndex = gear.getFirst();
+
+                if(startIndex - 1 == gearIndex || endIndex + 1 == gearIndex){
+                    gear.add(nums.get(i));
+                }
+            }
         }
+    }
+
+    public void checkGearOtherLine(Line_3 line){
+        for(int i = 0; i < line.numIndexes.size(); i++){
+            int startIndex = line.numIndexes.get(i);
+            int endIndex = line.numIndexes.get(i) + line.numLengths.get(i) - 1;
+
+            for(ArrayList<Integer> gear: gears){
+                int gearIndex = gear.getFirst();
+
+                if(startIndex-1 <= gearIndex && endIndex+1 >= gearIndex){
+                    gear.add(line.nums.get(i));
+                }
+            }
+        }
+    }
+
+    public void calcGearRatio(){
+        this.gearRatio = new ArrayList<>();
+
+        for(ArrayList<Integer> gear: gears){
+
+            if(gear.size() == 3) {
+                this.gearRatio.add(gear.get(1) * gear.get(2));
+                System.out.print(gear.get(1) + " " + gear.get(2));
+            } else {
+                this.gearRatio.add(0);
+            }
+            System.out.println(" " + gear.get(0));
+        }
+    }
+
+    public int getTotalGearRatio(){
+        int sum = 0;
+        calcGearRatio();
+
+        for(int ratio: gearRatio){
+            sum += ratio;
+        }
+
+        return sum;
     }
 
     public void getNums() {
