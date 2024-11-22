@@ -17,10 +17,8 @@ public class Main3Part1 {
 
         ArrayList<Line_3> lines = new ArrayList<>();
 
-        int index = 0;
         for(Line line: getInput.getLines()){
-            index++;
-            lines.add(new Line_3(line, index));
+            lines.add(new Line_3(line));
         }
 
         int sum = 0;

@@ -5,7 +5,7 @@ import org.Line;
 
 import java.util.ArrayList;
 
-public class Main4Part1 {
+public class Main4Part2 {
     public static void main(String[] args) {
         GetInput getInput;
         try {
@@ -22,9 +22,22 @@ public class Main4Part1 {
 
         int sum = 0;
 
-        for(Line_4 line: lines){
-            sum += line.calcWin();
+        for(int i = 0; i < lines.size(); i++){
+            sum += totalScratchcards(lines, i);
         }
+
         System.out.println(sum);
+    }
+
+    public static int totalScratchcards(ArrayList<Line_4> lines, int index){
+        int sum = 1;
+
+        for(int j = 1; j <= lines.get(index).calcWinnings(); j++){
+            if(index + j <= lines.size()){
+                sum += totalScratchcards(lines, index+j);
+            }
+        }
+
+        return sum;
     }
 }

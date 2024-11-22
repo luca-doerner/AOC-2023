@@ -13,11 +13,9 @@ public class Line_3 extends Line{
     public boolean[] numsValid;
     public ArrayList<ArrayList<Integer>> gears;
     public ArrayList<Integer> gearRatio;
-    int index;
 
-    public Line_3(Line line, int index){
+    public Line_3(Line line){
         super(line.getInput());
-        this.index = index;
         characters = getChars();
         getNums();
         numsValid = new boolean[numLengths.size()];
@@ -160,7 +158,6 @@ public class Line_3 extends Line{
     }
 
     public void checkNumbersOtherLine(Line_3 line){
-        System.out.print(index);
         for(int i = 0; i < numIndexes.size(); i++){
             int firstIndex = numIndexes.get(i);
             int lastIndex = numIndexes.get(i) + numLengths.get(i) - 1;
